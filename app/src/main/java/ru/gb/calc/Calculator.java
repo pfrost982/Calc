@@ -23,8 +23,22 @@ public class Calculator {
     }
 
     public void calculateResult() {
-        calcString.setLength(0);
-        calcString.append("Result!!!");
-    }
+        String result = calcString.toString();
+        result = result.replaceAll("x", "*");
+        result = result.replaceAll("%", "/100");
 
+        Context rhino = Context.enter();
+
+        rhino.setOptimizationLevel(-1);
+        String finalResult = "";
+
+        try {
+            Scriptable scriptable = rhino.initStandardObjects();
+            finalResult = rhino.evaluateString(scriptable, result, "javascript", 1, null).toString();
+        } catch (Exception e) {
+            finalResult = "Error!";
+        }
+        calcString.setLength(0);
+        calcString.append(finalResult);
+    }
 }
