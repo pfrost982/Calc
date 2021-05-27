@@ -4,7 +4,7 @@ import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Scriptable;
 
 public class Calculator {
-    private StringBuilder calcString;
+    private final StringBuilder calcString;
 
     public Calculator(String str) {
         this.calcString = new StringBuilder(str);
@@ -30,7 +30,7 @@ public class Calculator {
         Context rhino = Context.enter();
 
         rhino.setOptimizationLevel(-1);
-        String finalResult = "";
+        String finalResult;
 
         try {
             Scriptable scriptable = rhino.initStandardObjects();
@@ -38,6 +38,7 @@ public class Calculator {
         } catch (Exception e) {
             finalResult = "Error!";
         }
+        Context.exit();
         calcString.setLength(0);
         calcString.append(finalResult);
     }

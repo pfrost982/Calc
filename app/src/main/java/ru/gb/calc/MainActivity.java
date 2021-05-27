@@ -1,5 +1,6 @@
 package ru.gb.calc;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private Calculator calc;
+    private final String CALC_STRING_KEY = "CALC_STRING_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +18,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.text_view);
         calc = new Calculator("");
+
+        if (savedInstanceState != null && savedInstanceState.containsKey(CALC_STRING_KEY)) {
+            calc.appendString(savedInstanceState.getString(CALC_STRING_KEY));
+        }
+        refreshTextView();
 
         ((Button) findViewById(R.id.button_open_bracket)).setOnClickListener(v -> {
             calc.appendString("(");
@@ -92,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.button_equal)).setOnClickListener(v -> {
             calc.calculateResult();
             refreshTextView();
+            calc.clear();
         });
         ((Button) findViewById(R.id.button_plus)).setOnClickListener(v -> {
             calc.appendString("+");
@@ -101,5 +109,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void refreshTextView() {
         textView.setText(calc.getCalcString());
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(CALC_STRING_KEY, calc.getCalcString());
     }
 }
