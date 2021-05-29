@@ -15,7 +15,7 @@
         android:gravity="center"
         android:lines="2"
         android:textColor="@color/white"
-        android:textSize="32sp"
+        android:textSize="@dimen/view_text_size"
         app:layout_constraintBottom_toTopOf="@id/button_9"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -24,10 +24,7 @@
 
     <Button
         android:id="@+id/button_7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/_7"
         app:layout_constraintBottom_toTopOf="@id/button_4"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,10 +33,7 @@
 
     <Button
         android:id="@+id/button_8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/_8"
         app:layout_constraintBottom_toTopOf="@+id/button_5"
         app:layout_constraintLeft_toRightOf="@id/button_7"
@@ -48,10 +42,7 @@
 
     <Button
         android:id="@+id/button_9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/_9"
         app:layout_constraintBottom_toTopOf="@id/button_6"
         app:layout_constraintLeft_toRightOf="@id/button_8"
@@ -60,10 +51,7 @@
 
     <Button
         android:id="@+id/button_C"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_red"
-        android:padding="16dp"
+        style="@style/button_style_red"
         android:text="@string/_C"
         app:layout_constraintBottom_toTopOf="@id/button_percent"
         app:layout_constraintLeft_toRightOf="@id/button_9"
@@ -72,10 +60,7 @@
 
     <Button
         android:id="@+id/button_div"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_green"
-        android:padding="16dp"
+        style="@style/button_style_green"
         android:text="@string/div"
         app:layout_constraintBottom_toTopOf="@id/button_mul"
         app:layout_constraintLeft_toRightOf="@id/button_C"
@@ -84,10 +69,7 @@
 
     <Button
         android:id="@+id/button_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/_4"
         app:layout_constraintBottom_toTopOf="@id/button_1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -96,10 +78,7 @@
 
     <Button
         android:id="@+id/button_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/_5"
         app:layout_constraintBottom_toTopOf="@id/button_2"
         app:layout_constraintLeft_toRightOf="@id/button_4"
@@ -108,10 +87,7 @@
 
     <Button
         android:id="@+id/button_6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/_6"
         app:layout_constraintBottom_toTopOf="@id/button_3"
         app:layout_constraintLeft_toRightOf="@id/button_5"
@@ -120,10 +96,7 @@
 
     <Button
         android:id="@+id/button_percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/percent"
         app:layout_constraintBottom_toTopOf="@id/button_open_bracket"
         app:layout_constraintLeft_toRightOf="@id/button_6"
@@ -132,10 +105,7 @@
 
     <Button
         android:id="@+id/button_mul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_green"
-        android:padding="16dp"
+        style="@style/button_style_green"
         android:text="@string/mul"
         app:layout_constraintBottom_toTopOf="@id/button_minus"
         app:layout_constraintLeft_toRightOf="@id/button_percent"
@@ -144,10 +114,7 @@
 
     <Button
         android:id="@+id/button_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/_1"
         app:layout_constraintBottom_toTopOf="@id/button_point"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -156,10 +123,7 @@
 
     <Button
         android:id="@+id/button_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/_2"
         app:layout_constraintBottom_toTopOf="@id/button_0"
         app:layout_constraintLeft_toRightOf="@id/button_1"
@@ -168,10 +132,7 @@
 
     <Button
         android:id="@+id/button_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/_3"
         app:layout_constraintBottom_toTopOf="@id/button_equal"
         app:layout_constraintLeft_toRightOf="@id/button_2"
@@ -180,10 +141,7 @@
 
     <Button
         android:id="@+id/button_open_bracket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/open_bracket"
         app:layout_constraintBottom_toTopOf="@id/button_close_bracket"
         app:layout_constraintLeft_toRightOf="@+id/button_3"
@@ -192,10 +150,7 @@
 
     <Button
         android:id="@+id/button_minus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_green"
-        android:padding="16dp"
+        style="@style/button_style_green"
         android:text="@string/minus"
         app:layout_constraintBottom_toTopOf="@id/button_plus"
         app:layout_constraintLeft_toRightOf="@id/button_open_bracket"
@@ -204,10 +159,7 @@
 
     <Button
         android:id="@+id/button_point"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/point"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -216,10 +168,7 @@
 
     <Button
         android:id="@+id/button_0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/_0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/button_point"
@@ -228,10 +177,7 @@
 
     <Button
         android:id="@+id/button_equal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_orange"
-        android:padding="16dp"
+        style="@style/button_style_orange"
         android:text="@string/equal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/button_0"
@@ -240,10 +186,7 @@
 
     <Button
         android:id="@+id/button_close_bracket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button"
-        android:padding="16dp"
+        style="@style/button_style"
         android:text="@string/close_bracket"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/button_equal"
@@ -252,10 +195,7 @@
 
     <Button
         android:id="@+id/button_plus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/button_green"
-        android:padding="16dp"
+        style="@style/button_style_green"
         android:text="@string/plus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/button_close_bracket"

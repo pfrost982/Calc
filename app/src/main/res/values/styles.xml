@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="button_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/button</item>
+        <item name="android:padding">@dimen/button_padding</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+    </style>
+
+    <style name="button_style_green" parent="button_style">
+        <item name="android:backgroundTint">@color/button_green</item>
+    </style>
+
+    <style name="button_style_red" parent="button_style">
+        <item name="android:backgroundTint">@color/button_red</item>
+    </style>
+
+    <style name="button_style_orange" parent="button_style">
+        <item name="android:backgroundTint">@color/button_orange</item>
+    </style>
+</resources>
