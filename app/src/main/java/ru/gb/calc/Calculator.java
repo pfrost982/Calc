@@ -23,6 +23,9 @@ public class Calculator {
     }
 
     public void calculateResult() {
+        if(getCalcString() == "") {
+            return;
+        }
         String result = calcString.toString();
         result = result.replaceAll("x", "*");
         result = result.replaceAll("%", "/100");
