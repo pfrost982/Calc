@@ -4,12 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back_image33"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/text_view"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_view"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/back_image33_land" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/edit_text_back"
         android:gravity="center"
@@ -18,8 +24,18 @@
         android:textSize="@dimen/view_text_size"
         app:layout_constraintBottom_toTopOf="@id/button_close_bracket"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/button_choice"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_choice"
+        style="@style/button_style"
+        android:text="button"
+        app:layout_constraintBottom_toTopOf="@id/button_C"
+        app:layout_constraintLeft_toRightOf="@id/text_view"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_open_bracket"
