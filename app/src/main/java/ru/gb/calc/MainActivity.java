@@ -3,6 +3,8 @@ package ru.gb.calc;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,7 +13,10 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private Calculator calc;
-    private final String CALC_STRING_KEY = "CALC_STRING_KEY";
+    public static final String CALC_STRING_KEY = "CALC_STRING_KEY";
+    public static final String CALC_THEME_KEY = "CALC_THEME_KEY";
+    public static final int THEME_REQUEST_CODE = 1234;
+    private boolean dayBackground = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +25,23 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.text_view);
         calc = new Calculator("");
 
-        if (savedInstanceState != null && savedInstanceState.containsKey(CALC_STRING_KEY)) {
-            calc.appendString(savedInstanceState.getString(CALC_STRING_KEY));
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(CALC_STRING_KEY)) {
+                calc.appendString(savedInstanceState.getString(CALC_STRING_KEY));
+            }
+            if (savedInstanceState.containsKey(CALC_THEME_KEY)) {
+                dayBackground = savedInstanceState.getBoolean(CALC_THEME_KEY);
+            }
         }
         refreshTextView();
+
+        ImageView imageView = findViewById(R.id.image_view_day);
+        if (dayBackground) {
+            imageView.setImageResource(R.drawable.day);
+        } else {
+            imageView.setImageResource(R.drawable.night);
+        }
+
 
         ((Button) findViewById(R.id.button_open_bracket)).setOnClickListener(v -> {
             calc.appendString("(");
@@ -106,9 +124,11 @@ public class MainActivity extends AppCompatActivity {
             calc.appendString("+");
             refreshTextView();
         });
-
-        //ImageView imageView = findViewById(R.id.image_view);
-        //imageView.setImageResource(R.drawable.back_image33_land);
+        ((Button) findViewById(R.id.button_choice)).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Change_background_dialog.class);
+            intent.putExtra(CALC_THEME_KEY, dayBackground);
+            startActivityForResult(intent, THEME_REQUEST_CODE);
+        });
     }
 
     private void refreshTextView() {
@@ -117,7 +137,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
         outState.putString(CALC_STRING_KEY, calc.getCalcString());
+        outState.putBoolean(CALC_THEME_KEY, dayBackground);
+        super.onSaveInstanceState(outState);
     }
-}
+
+    @Override
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == THEME_REQUEST_CODE) {
+            boolean dataBooleanExtra = data.getBooleanExtra(CALC_THEME_KEY, dayBackground);
+            dayBackground = dataBooleanExtra;
+            recreate();
+        }
+    }}

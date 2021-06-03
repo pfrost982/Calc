@@ -7,11 +7,10 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image_view"
+        android:id="@+id/image_view_day"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/back_image33_land" />
+        android:scaleType="fitXY" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view"
@@ -29,8 +28,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_choice"
-        style="@style/button_style"
-        android:text="button"
+        android:layout_width="@dimen/button_choice_size"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/hidden"
+        android:text="@string/change"
+        android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toTopOf="@id/button_div"
         app:layout_constraintLeft_toRightOf="@id/text_view"
         app:layout_constraintRight_toRightOf="parent"
