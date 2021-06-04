@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String CALC_THEME_KEY = "CALC_THEME_KEY";
     public static final int THEME_REQUEST_CODE = 1234;
     private boolean dayBackground = true;
+    private static final String PREF_NAME = "Main.pref";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.text_view);
         calc = new Calculator("");
+
+        dayBackground = getSharedPreferences(PREF_NAME, MODE_PRIVATE).getBoolean(CALC_THEME_KEY, dayBackground);
 
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey(CALC_STRING_KEY)) {
@@ -43,88 +45,88 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        ((Button) findViewById(R.id.button_open_bracket)).setOnClickListener(v -> {
+        findViewById(R.id.button_open_bracket).setOnClickListener(v -> {
             calc.appendString("(");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_close_bracket)).setOnClickListener(v -> {
+        findViewById(R.id.button_close_bracket).setOnClickListener(v -> {
             calc.appendString(")");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_percent)).setOnClickListener(v -> {
+        findViewById(R.id.button_percent).setOnClickListener(v -> {
             calc.appendString("%");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_C)).setOnClickListener(v -> {
+        findViewById(R.id.button_C).setOnClickListener(v -> {
             calc.clear();
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_7)).setOnClickListener(v -> {
+        findViewById(R.id.button_7).setOnClickListener(v -> {
             calc.appendString("7");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_8)).setOnClickListener(v -> {
+        findViewById(R.id.button_8).setOnClickListener(v -> {
             calc.appendString("8");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_9)).setOnClickListener(v -> {
+        findViewById(R.id.button_9).setOnClickListener(v -> {
             calc.appendString("9");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_div)).setOnClickListener(v -> {
+        findViewById(R.id.button_div).setOnClickListener(v -> {
             calc.appendString("/");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_4)).setOnClickListener(v -> {
+        findViewById(R.id.button_4).setOnClickListener(v -> {
             calc.appendString("4");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_5)).setOnClickListener(v -> {
+        findViewById(R.id.button_5).setOnClickListener(v -> {
             calc.appendString("5");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_6)).setOnClickListener(v -> {
+        findViewById(R.id.button_6).setOnClickListener(v -> {
             calc.appendString("6");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_mul)).setOnClickListener(v -> {
+        findViewById(R.id.button_mul).setOnClickListener(v -> {
             calc.appendString("x");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_1)).setOnClickListener(v -> {
+        findViewById(R.id.button_1).setOnClickListener(v -> {
             calc.appendString("1");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_2)).setOnClickListener(v -> {
+        findViewById(R.id.button_2).setOnClickListener(v -> {
             calc.appendString("2");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_3)).setOnClickListener(v -> {
+        findViewById(R.id.button_3).setOnClickListener(v -> {
             calc.appendString("3");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_minus)).setOnClickListener(v -> {
+        findViewById(R.id.button_minus).setOnClickListener(v -> {
             calc.appendString("-");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_point)).setOnClickListener(v -> {
+        findViewById(R.id.button_point).setOnClickListener(v -> {
             calc.appendString(".");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_0)).setOnClickListener(v -> {
+        findViewById(R.id.button_0).setOnClickListener(v -> {
             calc.appendString("0");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_equal)).setOnClickListener(v -> {
+        findViewById(R.id.button_equal).setOnClickListener(v -> {
             calc.calculateResult();
             refreshTextView();
             calc.clear();
         });
-        ((Button) findViewById(R.id.button_plus)).setOnClickListener(v -> {
+        findViewById(R.id.button_plus).setOnClickListener(v -> {
             calc.appendString("+");
             refreshTextView();
         });
-        ((Button) findViewById(R.id.button_choice)).setOnClickListener(v -> {
+        findViewById(R.id.button_choice).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, Change_background_dialog.class);
             intent.putExtra(CALC_THEME_KEY, dayBackground);
             startActivityForResult(intent, THEME_REQUEST_CODE);
@@ -143,11 +145,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == THEME_REQUEST_CODE) {
-            boolean dataBooleanExtra = data.getBooleanExtra(CALC_THEME_KEY, dayBackground);
-            dayBackground = dataBooleanExtra;
+            dayBackground = data.getBooleanExtra(CALC_THEME_KEY, dayBackground);
             recreate();
         }
-    }}
+    }
+
+    @Override
+    protected void onDestroy() {
+        getSharedPreferences(PREF_NAME, MODE_PRIVATE).edit().putBoolean(CALC_THEME_KEY, dayBackground).apply();
+        super.onDestroy();
+    }
+}
