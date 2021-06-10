@@ -3,4 +3,5 @@
     <dimen name="button_padding">8dp</dimen>
     <dimen name="button_text_size">24sp</dimen>
     <dimen name="view_text_size">32sp</dimen>
+    <dimen name="button_choice_size">60dp</dimen>
 </resources>
